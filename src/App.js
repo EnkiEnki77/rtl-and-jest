@@ -1,23 +1,47 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+export function replaceCamelWithSpaces(colorName) {
+  const arr = [...colorName].map((item) =>
+    item === item.toUpperCase() ? ` ${item}` : item
+  );
+
+  return arr[0].toUpperCase().concat(arr.slice(1).join(""));
+}
+
+console.log(replaceCamelWithSpaces("redViolet"));
 
 function App() {
-  const [color, setColor] = useState('red')
-  const [isChecked, setIsChecked] = useState(false)
-
+  const [color, setColor] = useState("MediumVioletRed");
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleColor = () => {
-    setColor(prev => prev === 'red' ? 'blue' : 'red')
-  }
+    setColor((prev) =>
+      prev === "MediumVioletRed" ? "MidnightBlue" : "MediumVioletRed"
+    );
+  };
 
-  const handleCheckbox = () => {
-    setIsChecked(prev => !prev)
-  }
+  const handleCheckbox = (e) => {
+    setIsChecked(e.target.checked);
+  };
 
   return (
     <div className="App">
-      <button style={{backgroundColor: color}} onClick={handleColor} disabled={isChecked}>Changes to {`${color === 'red' ? 'blue' : 'red'}`}</button>
-      <input type="checkbox" checked={isChecked} onClick={handleCheckbox}/>
+      <button
+        style={{
+          backgroundColor: isChecked ? "gray" : color,
+          cursor: isChecked ? "not-allowed" : "pointer",
+        }}
+        onClick={handleColor}
+        disabled={isChecked}
+      >
+        Changes to{" "}
+        {`${color === "MediumVioletRed" ? "MidnightBlue" : "MediumVioletRed"}`}
+      </button>
+      <label>
+        Disable button
+        <input type="checkbox" onChange={(e) => handleCheckbox(e)} />
+      </label>
     </div>
   );
 }
