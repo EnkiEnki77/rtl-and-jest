@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import OrderForm from "./pages/Orders/OrderForm";
+import OrderSummary from "./pages/summary/OrderSummary";
 import SummaryForm from "./pages/summary/SummaryForm";
 
 export function replaceCamelWithSpaces(colorName) {
@@ -50,7 +52,7 @@ export function replaceCamelWithSpaces(colorName) {
 const App = () => {
   return (
     <div>
-      <SummaryForm />
+      <OrderForm />
     </div>
   );
 };
